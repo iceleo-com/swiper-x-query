@@ -1,7 +1,7 @@
 {
-  "name": "swiper-src",
+  "name": "swiper-x-query",
   "version": "8.2.6",
-  "description": "Most modern mobile touch slider and framework with hardware accelerated transitions",
+  "description": "A custom of Swiper that allow using 3rd DOM manipulation like jQuery, Zepto,...etc",
   "scripts": {
     "build": "node scripts/build",
     "build:core": "node scripts/build --only core",
@@ -52,26 +52,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nolimits4web/Swiper.git"
+    "url": "https://github.com/iceleo-com/swiper-x-query.git"
   },
   "keywords": [
     "swiper",
     "swipe",
     "slider",
-    "touch",
-    "ios",
-    "mobile",
-    "cordova",
-    "phonegap",
-    "app",
-    "framework",
-    "framework7",
-    "carousel",
-    "gallery",
-    "plugin",
-    "vue",
-    "angular",
-    "svelte",
+    "jquery",
+    "zepto",
     "slideshow"
   ],
   "author": "Vladimir Kharlampidi",

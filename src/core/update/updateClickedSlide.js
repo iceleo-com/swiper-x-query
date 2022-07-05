@@ -1,7 +1,6 @@
-import $ from '../../shared/dom.js';
-
 export default function updateClickedSlide(e) {
   const swiper = this;
+  const $ = swiper.$;
   const params = swiper.params;
   const slide = $(e).closest(`.${params.slideClass}`)[0];
   let slideFound = false;

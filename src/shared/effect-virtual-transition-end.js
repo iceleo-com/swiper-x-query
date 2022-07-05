@@ -17,7 +17,7 @@ export default function effectVirtualTransitionEnd({ swiper, duration, transform
       swiper.animating = false;
       const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
       for (let i = 0; i < triggerEvents.length; i += 1) {
-        $wrapperEl.trigger(triggerEvents[i]);
+        $wrapperEl.triggerAlt(triggerEvents[i]);
       }
     });
   }

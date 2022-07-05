@@ -1,7 +1,8 @@
 import { isObject } from '../../shared/utils.js';
-import $ from '../../shared/dom.js';
 
 export default function Thumb({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
   extendParams({
     thumbs: {
       swiper: null,

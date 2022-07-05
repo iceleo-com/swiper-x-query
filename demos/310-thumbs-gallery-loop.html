@@ -8,6 +8,7 @@
 
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -49,6 +50,7 @@
   <!-- Initialize Swiper -->
   <script type="module">
     import Swiper from 'swiper/swiper-bundle.esm.js';
+    Swiper.$ = $;
     import 'swiper/swiper-bundle.css';
     var galleryThumbs = new Swiper('.gallery-thumbs', {
       spaceBetween: 10,

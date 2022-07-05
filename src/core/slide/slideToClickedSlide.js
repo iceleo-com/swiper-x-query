@@ -1,8 +1,8 @@
-import $ from '../../shared/dom.js';
 import { nextTick } from '../../shared/utils.js';
 
 export default function slideToClickedSlide() {
   const swiper = this;
+  const $ = swiper.$;
   const { params, $wrapperEl } = swiper;
 
   const slidesPerView =

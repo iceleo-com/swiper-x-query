@@ -1,7 +1,6 @@
-import $ from '../../shared/dom.js';
-
 export default function updateAutoHeight(speed) {
   const swiper = this;
+  const $ = swiper.$;
   const activeSlides = [];
   const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
   let newHeight = 0;
@@ -23,7 +22,7 @@ export default function updateAutoHeight(speed) {
   // Find slides currently in view
   if (swiper.params.slidesPerView !== 'auto' && swiper.params.slidesPerView > 1) {
     if (swiper.params.centeredSlides) {
-      (swiper.visibleSlides || $([])).each((slide) => {
+      (swiper.visibleSlides || $([])).eachAlt((slide) => {
         activeSlides.push(slide);
       });
     } else {

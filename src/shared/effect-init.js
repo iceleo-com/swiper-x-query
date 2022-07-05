@@ -37,7 +37,7 @@ export default function effectInit(params) {
     if (recreateShadows) {
       if (!getEffectParams || !getEffectParams().slideShadows) return;
       // remove shadows
-      swiper.slides.each((slideEl) => {
+      swiper.slides.eachAlt((slideEl) => {
         const $slideEl = swiper.$(slideEl);
         $slideEl
           .find(

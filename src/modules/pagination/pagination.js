@@ -1,8 +1,8 @@
-import $ from '../../shared/dom.js';
 import classesToSelector from '../../shared/classes-to-selector.js';
 import createElementIfNotDefined from '../../shared/create-element-if-not-defined.js';
 
 export default function Pagination({ swiper, extendParams, on, emit }) {
+  const $ = swiper.$;
   const pfx = 'swiper-pagination';
   extendParams({
     pagination: {
@@ -125,7 +125,7 @@ export default function Pagination({ swiper, extendParams, on, emit }) {
           .join(' '),
       );
       if ($el.length > 1) {
-        bullets.each((bullet) => {
+        bullets.eachAlt((bullet) => {
           const $bullet = $(bullet);
           const bulletIndex = $bullet.index();
           if (bulletIndex === current) {
@@ -315,7 +315,7 @@ export default function Pagination({ swiper, extendParams, on, emit }) {
     }
 
     if (params.clickable) {
-      $el.on('click', classesToSelector(params.bulletClass), function onClick(e) {
+      $el.onAlt('click', classesToSelector(params.bulletClass), function onClick(e) {
         e.preventDefault();
         let index = $(this).index() * swiper.params.slidesPerGroup;
         if (swiper.params.loop) index += swiper.loopedSlides;
@@ -343,7 +343,7 @@ export default function Pagination({ swiper, extendParams, on, emit }) {
     if (swiper.pagination.bullets && swiper.pagination.bullets.removeClass)
       swiper.pagination.bullets.removeClass(params.bulletActiveClass);
     if (params.clickable) {
-      $el.off('click', classesToSelector(params.bulletClass));
+      $el.offAlt('click', classesToSelector(params.bulletClass));
     }
   }
 

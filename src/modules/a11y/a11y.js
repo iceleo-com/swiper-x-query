@@ -1,7 +1,8 @@
 import classesToSelector from '../../shared/classes-to-selector.js';
-import $ from '../../shared/dom.js';
 
 export default function A11y({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
   extendParams({
     a11y: {
       enabled: true,
@@ -132,7 +133,7 @@ export default function A11y({ swiper, extendParams, on }) {
   function updatePagination() {
     const params = swiper.params.a11y;
     if (!hasPagination()) return;
-    swiper.pagination.bullets.each((bulletEl) => {
+    swiper.pagination.bullets.eachAlt((bulletEl) => {
       const $bulletEl = $(bulletEl);
       if (swiper.params.pagination.clickable) {
         makeElFocusable($bulletEl);
@@ -156,7 +157,7 @@ export default function A11y({ swiper, extendParams, on }) {
     makeElFocusable($el);
     if ($el[0].tagName !== 'BUTTON') {
       addElRole($el, 'button');
-      $el.on('keydown', onEnterOrSpaceKey);
+      $el.onAlt('keydown', onEnterOrSpaceKey);
     }
     addElLabel($el, message);
     addElControls($el, wrapperId);
@@ -188,7 +189,7 @@ export default function A11y({ swiper, extendParams, on }) {
           .length
       : swiper.slides.length;
     if (params.slideLabelMessage) {
-      swiper.slides.each((slideEl, index) => {
+      swiper.slides.eachAlt((slideEl, index) => {
         const $slideEl = $(slideEl);
         const slideIndex = swiper.params.loop
           ? parseInt($slideEl.attr('data-swiper-slide-index'), 10)
@@ -244,7 +245,7 @@ export default function A11y({ swiper, extendParams, on }) {
 
     // Pagination
     if (hasClickablePagination()) {
-      swiper.pagination.$el.on(
+      swiper.pagination.$el.onAlt(
         'keydown',
         classesToSelector(swiper.params.pagination.bulletClass),
         onEnterOrSpaceKey,
@@ -252,7 +253,7 @@ export default function A11y({ swiper, extendParams, on }) {
     }
 
     // Tab focus
-    swiper.$el.on('focus', handleFocus, true);
+    swiper.$el.onAlt('focus', handleFocus, true);
   };
   function destroy() {
     if (liveRegion && liveRegion.length > 0) liveRegion.remove();
@@ -266,15 +267,15 @@ export default function A11y({ swiper, extendParams, on }) {
       $prevEl = swiper.navigation.$prevEl;
     }
     if ($nextEl) {
-      $nextEl.off('keydown', onEnterOrSpaceKey);
+      $nextEl.offAlt('keydown', onEnterOrSpaceKey);
     }
     if ($prevEl) {
-      $prevEl.off('keydown', onEnterOrSpaceKey);
+      $prevEl.offAlt('keydown', onEnterOrSpaceKey);
     }
 
     // Pagination
     if (hasClickablePagination()) {
-      swiper.pagination.$el.off(
+      swiper.pagination.$el.offAlt(
         'keydown',
         classesToSelector(swiper.params.pagination.bulletClass),
         onEnterOrSpaceKey,
@@ -282,7 +283,7 @@ export default function A11y({ swiper, extendParams, on }) {
     }
 
     // Tab focus
-    swiper.$el.off('focus', handleFocus, true);
+    swiper.$el.offAlt('focus', handleFocus, true);
   }
 
   on('beforeInit', () => {

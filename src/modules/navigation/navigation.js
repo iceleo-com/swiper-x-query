@@ -1,7 +1,8 @@
 import createElementIfNotDefined from '../../shared/create-element-if-not-defined.js';
-import $ from '../../shared/dom.js';
 
 export default function Navigation({ swiper, extendParams, on, emit }) {
+  const $ = swiper.$;
+
   extendParams({
     navigation: {
       nextEl: null,
@@ -86,10 +87,10 @@ export default function Navigation({ swiper, extendParams, on, emit }) {
     const $prevEl = getEl(params.prevEl);
 
     if ($nextEl && $nextEl.length > 0) {
-      $nextEl.on('click', onNextClick);
+      $nextEl.onAlt('click', onNextClick);
     }
     if ($prevEl && $prevEl.length > 0) {
-      $prevEl.on('click', onPrevClick);
+      $prevEl.onAlt('click', onPrevClick);
     }
 
     Object.assign(swiper.navigation, {
@@ -107,11 +108,11 @@ export default function Navigation({ swiper, extendParams, on, emit }) {
   function destroy() {
     const { $nextEl, $prevEl } = swiper.navigation;
     if ($nextEl && $nextEl.length) {
-      $nextEl.off('click', onNextClick);
+      $nextEl.offAlt('click', onNextClick);
       $nextEl.removeClass(swiper.params.navigation.disabledClass);
     }
     if ($prevEl && $prevEl.length) {
-      $prevEl.off('click', onPrevClick);
+      $prevEl.offAlt('click', onPrevClick);
       $prevEl.removeClass(swiper.params.navigation.disabledClass);
     }
   }

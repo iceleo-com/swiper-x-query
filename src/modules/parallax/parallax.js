@@ -1,6 +1,6 @@
-import $ from '../../shared/dom.js';
-
 export default function Parallax({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
   extendParams({
     parallax: {
       enabled: false,
@@ -59,10 +59,10 @@ export default function Parallax({ swiper, extendParams, on }) {
       .children(
         '[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y], [data-swiper-parallax-opacity], [data-swiper-parallax-scale]',
       )
-      .each((el) => {
+      .eachAlt((el) => {
         setTransform(el, progress);
       });
-    slides.each((slideEl, slideIndex) => {
+    slides.eachAlt((slideEl, slideIndex) => {
       let slideProgress = slideEl.progress;
       if (swiper.params.slidesPerGroup > 1 && swiper.params.slidesPerView !== 'auto') {
         slideProgress += Math.ceil(slideIndex / 2) - progress * (snapGrid.length - 1);
@@ -72,7 +72,7 @@ export default function Parallax({ swiper, extendParams, on }) {
         .find(
           '[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y], [data-swiper-parallax-opacity], [data-swiper-parallax-scale]',
         )
-        .each((el) => {
+        .eachAlt((el) => {
           setTransform(el, slideProgress);
         });
     });
@@ -84,7 +84,7 @@ export default function Parallax({ swiper, extendParams, on }) {
       .find(
         '[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y], [data-swiper-parallax-opacity], [data-swiper-parallax-scale]',
       )
-      .each((parallaxEl) => {
+      .eachAlt((parallaxEl) => {
         const $parallaxEl = $(parallaxEl);
         let parallaxDuration =
           parseInt($parallaxEl.attr('data-swiper-parallax-duration'), 10) || duration;

@@ -1,9 +1,9 @@
 import { getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
 import { nextTick } from '../../shared/utils.js';
 import createElementIfNotDefined from '../../shared/create-element-if-not-defined.js';
 
 export default function Scrollbar({ swiper, extendParams, on, emit }) {
+  const $ = swiper.$;
   const document = getDocument();
 
   let isTouched = false;

@@ -10,7 +10,8 @@
 
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="../dist/swiper-bundle.min.css" />
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 
   <body>
     <!-- Swiper -->
@@ -34,6 +35,7 @@
     <!-- Initialize Swiper -->
     <script type="module">
       import Swiper from 'swiper/swiper-bundle.esm.js';
+    Swiper.$ = $;
       import 'swiper/swiper-bundle.css';
       var swiper = new Swiper('.swiper', {
         direction: 'vertical',

@@ -1,10 +1,15 @@
-import $ from '../../shared/dom.js';
 import createShadow from '../../shared/create-shadow.js';
 import effectInit from '../../shared/effect-init.js';
 import effectTarget from '../../shared/effect-target.js';
 import effectVirtualTransitionEnd from '../../shared/effect-virtual-transition-end.js';
 
 export default function EffectFlip({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
+  if (!createShadow.prototype.$) {
+    createShadow.prototype.$ = $;
+  }
+
   extendParams({
     flipEffect: {
       slideShadows: true,
@@ -33,7 +38,7 @@ export default function EffectFlip({ swiper, extendParams, on }) {
   const recreateShadows = () => {
     // Set shadows
     const params = swiper.params.flipEffect;
-    swiper.slides.each((slideEl) => {
+    swiper.slides.eachAlt((slideEl) => {
       const $slideEl = $(slideEl);
       let progress = $slideEl[0].progress;
       if (swiper.params.flipEffect.limitRotation) {

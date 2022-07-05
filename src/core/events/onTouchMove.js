@@ -1,10 +1,10 @@
 import { getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
 import { now } from '../../shared/utils.js';
 
 export default function onTouchMove(event) {
   const document = getDocument();
   const swiper = this;
+  const $ = swiper.$;
   const data = swiper.touchEventsData;
   const { params, touches, rtlTranslate: rtl, enabled } = swiper;
   if (!enabled) return;
@@ -126,7 +126,7 @@ export default function onTouchMove(event) {
     data.startTranslate = swiper.getTranslate();
     swiper.setTransition(0);
     if (swiper.animating) {
-      swiper.$wrapperEl.trigger('webkitTransitionEnd transitionend');
+      swiper.$wrapperEl.triggerAlt('webkitTransitionEnd transitionend');
     }
     data.allowMomentumBounce = false;
     // Grab Cursor

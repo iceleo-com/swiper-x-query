@@ -4,6 +4,12 @@ import effectTarget from '../../shared/effect-target.js';
 import effectVirtualTransitionEnd from '../../shared/effect-virtual-transition-end.js';
 
 export default function EffectCreative({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
+  if (!createShadow.prototype.$) {
+    createShadow.prototype.$ = $;
+  }
+
   extendParams({
     creativeEffect: {
       transformEl: null,

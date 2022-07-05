@@ -1,10 +1,10 @@
 /* eslint no-param-reassign: "off" */
 import { getDocument } from 'ssr-window';
-import $ from '../shared/dom.js';
 import { extend, now, deleteProps } from '../shared/utils.js';
 import { getSupport } from '../shared/get-support.js';
 import { getDevice } from '../shared/get-device.js';
 import { getBrowser } from '../shared/get-browser.js';
+import dom7compat from '../shared/dom7compat.js';
 
 import Resize from './modules/resize/resize.js';
 import Observer from './modules/observer/observer.js';
@@ -45,6 +45,9 @@ const extendedDefaults = {};
 
 class Swiper {
   constructor(...args) {
+    const $ = Swiper.$;
+    dom7compat($);
+
     let el;
     let params;
     if (
@@ -63,7 +66,7 @@ class Swiper {
 
     if (params.el && $(params.el).length > 1) {
       const swipers = [];
-      $(params.el).each((containerEl) => {
+      $(params.el).eachAlt((containerEl) => {
         const newParams = extend({}, params, { el: containerEl });
         swipers.push(new Swiper(newParams));
       });
@@ -72,6 +75,8 @@ class Swiper {
 
     // Swiper Instance
     const swiper = this;
+    // Save Dom lib
+    swiper.$ = $;
     swiper.__swiper__ = true;
     swiper.support = getSupport();
     swiper.device = getDevice({ userAgent: params.userAgent });
@@ -114,9 +119,6 @@ class Swiper {
     if (swiper.params && swiper.params.onAny) {
       swiper.onAny(swiper.params.onAny);
     }
-
-    // Save Dom lib
-    swiper.$ = $;
 
     // Extend Swiper
     Object.assign(swiper, {
@@ -292,7 +294,7 @@ class Swiper {
     const swiper = this;
     if (!swiper.params._emitClasses || !swiper.el) return;
     const updates = [];
-    swiper.slides.each((slideEl) => {
+    swiper.slides.eachAlt((slideEl) => {
       const classNames = swiper.getSlideClasses(slideEl);
       updates.push({ slideEl, classNames });
       swiper.emit('_slideClass', slideEl, classNames);
@@ -415,7 +417,7 @@ class Swiper {
 
     swiper.params.direction = newDirection;
 
-    swiper.slides.each((slideEl) => {
+    swiper.slides.eachAlt((slideEl) => {
       if (newDirection === 'vertical') {
         slideEl.style.width = '';
       } else {
@@ -447,6 +449,8 @@ class Swiper {
   mount(el) {
     const swiper = this;
     if (swiper.mounted) return true;
+
+    const $ = swiper.$;
 
     // Find el
     const $el = $(el || swiper.params.el);
@@ -482,7 +486,7 @@ class Swiper {
       $wrapperEl = $(wrapper);
       wrapper.className = swiper.params.wrapperClass;
       $el.append(wrapper);
-      $el.children(`.${swiper.params.slideClass}`).each((slideEl) => {
+      $el.children(`.${swiper.params.slideClass}`).eachAlt((slideEl) => {
         $wrapperEl.append(slideEl);
       });
     }
@@ -628,6 +632,8 @@ class Swiper {
 
     return null;
   }
+
+  static $(selector) { } // eslint-disable-line
 
   static extendDefaults(newDefaults) {
     extend(extendedDefaults, newDefaults);

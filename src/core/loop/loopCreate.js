@@ -1,8 +1,8 @@
 import { getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
 
 export default function loopCreate() {
   const swiper = this;
+  const $ = swiper.$;
   const document = getDocument();
   const { params, $wrapperEl } = swiper;
   // Remove duplicated slides
@@ -35,7 +35,7 @@ export default function loopCreate() {
 
   const prependSlides = [];
   const appendSlides = [];
-  slides.each((el, index) => {
+  slides.eachAlt((el, index) => {
     const slide = $(el);
     if (index < swiper.loopedSlides) {
       appendSlides.push(el);

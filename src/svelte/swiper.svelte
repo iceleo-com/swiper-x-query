@@ -43,7 +43,7 @@
     virtualData = data;
 
     tick().then(() => {
-      swiperInstance.$wrapperEl.children('.swiper-slide').each((el) => {
+      swiperInstance.$wrapperEl.children('.swiper-slide').eachAlt((el) => {
         if (el.onSwiper) el.onSwiper(swiperInstance);
       });
       swiperInstance.updateSlides();
@@ -111,7 +111,7 @@
     );
     dispatch('swiper', [swiperInstance]);
     if (swiperParams.virtual) return;
-    swiperInstance.slides.each((el) => {
+    swiperInstance.slides.eachAlt((el) => {
       if (el.onSwiper) el.onSwiper(swiperInstance);
     });
   });

@@ -1,7 +1,8 @@
 import { getWindow, getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
 
 export default function HashNavigation({ swiper, extendParams, emit, on }) {
+  const $ = swiper.$;
+
   let initialized = false;
   const document = getDocument();
   const window = getWindow();
@@ -64,12 +65,12 @@ export default function HashNavigation({ swiper, extendParams, emit, on }) {
       }
     }
     if (swiper.params.hashNavigation.watchState) {
-      $(window).on('hashchange', onHashChange);
+      $(window).onAlt('hashchange', onHashChange);
     }
   };
   const destroy = () => {
     if (swiper.params.hashNavigation.watchState) {
-      $(window).off('hashchange', onHashChange);
+      $(window).offAlt('hashchange', onHashChange);
     }
   };
 

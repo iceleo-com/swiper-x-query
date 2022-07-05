@@ -3,6 +3,12 @@ import effectInit from '../../shared/effect-init.js';
 import effectTarget from '../../shared/effect-target.js';
 
 export default function EffectCoverflow({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
+  if (!createShadow.prototype.$) {
+    createShadow.prototype.$ = $;
+  }
+
   extendParams({
     coverflowEffect: {
       rotate: 50,

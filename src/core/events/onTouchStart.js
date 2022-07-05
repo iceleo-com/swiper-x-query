@@ -1,5 +1,4 @@
 import { getWindow, getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
 import { now } from '../../shared/utils.js';
 
 // Modified from https://stackoverflow.com/questions/54520554/custom-element-getrootnode-closest-function-crossing-multiple-parent-shadowd
@@ -18,6 +17,7 @@ function closestElement(selector, base = this) {
 
 export default function onTouchStart(event) {
   const swiper = this;
+  const $ = swiper.$;
   const document = getDocument();
   const window = getWindow();
 

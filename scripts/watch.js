@@ -55,7 +55,7 @@ const watchFunction = async (fileName) => {
 };
 
 let watchTimeout;
-fs.watch(path.resolve(__dirname, '../src'), { recursive: true }, (eventType, fileName) => {
+fs.watch(path.resolve(__dirname, '../src'), { recursive: false }, (eventType, fileName) => {
   clearTimeout(watchTimeout);
   watchTimeout = setTimeout(() => {
     watchFunction(fileName);

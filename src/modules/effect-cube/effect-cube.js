@@ -1,7 +1,8 @@
-import $ from '../../shared/dom.js';
 import effectInit from '../../shared/effect-init.js';
 
 export default function EffectCube({ swiper, extendParams, on }) {
+  const $ = swiper.$;
+
   extendParams({
     cubeEffect: {
       slideShadows: true,
@@ -35,7 +36,7 @@ export default function EffectCube({ swiper, extendParams, on }) {
   const recreateShadows = () => {
     // create new ones
     const isHorizontal = swiper.isHorizontal();
-    swiper.slides.each((slideEl) => {
+    swiper.slides.eachAlt((slideEl) => {
       const progress = Math.max(Math.min(slideEl.progress, 1), -1);
       createSlideShadows($(slideEl), progress, isHorizontal);
     });

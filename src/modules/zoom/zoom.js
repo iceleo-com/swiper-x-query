@@ -1,8 +1,8 @@
 import { getWindow } from 'ssr-window';
-import $ from '../../shared/dom.js';
 import { getTranslate } from '../../shared/utils.js';
 
 export default function Zoom({ swiper, extendParams, on, emit }) {
+  const $ = swiper.$;
   const window = getWindow();
   extendParams({
     zoom: {
@@ -534,24 +534,24 @@ export default function Zoom({ swiper, extendParams, on, emit }) {
 
     // Scale image
     if (support.gestures) {
-      swiper.$wrapperEl.on(swiper.touchEvents.start, enableGestures, passiveListener);
-      swiper.$wrapperEl.on(swiper.touchEvents.end, disableGestures, passiveListener);
+      swiper.$wrapperEl.onAlt(swiper.touchEvents.start, enableGestures, passiveListener);
+      swiper.$wrapperEl.onAlt(swiper.touchEvents.end, disableGestures, passiveListener);
     } else if (swiper.touchEvents.start === 'touchstart') {
-      swiper.$wrapperEl.on(
+      swiper.$wrapperEl.onAlt(
         swiper.touchEvents.start,
         slideSelector,
         onGestureStart,
         passiveListener,
       );
-      swiper.$wrapperEl.on(
+      swiper.$wrapperEl.onAlt(
         swiper.touchEvents.move,
         slideSelector,
         onGestureChange,
         activeListenerWithCapture,
       );
-      swiper.$wrapperEl.on(swiper.touchEvents.end, slideSelector, onGestureEnd, passiveListener);
+      swiper.$wrapperEl.onAlt(swiper.touchEvents.end, slideSelector, onGestureEnd, passiveListener);
       if (swiper.touchEvents.cancel) {
-        swiper.$wrapperEl.on(
+        swiper.$wrapperEl.onAlt(
           swiper.touchEvents.cancel,
           slideSelector,
           onGestureEnd,
@@ -561,7 +561,7 @@ export default function Zoom({ swiper, extendParams, on, emit }) {
     }
 
     // Move image
-    swiper.$wrapperEl.on(
+    swiper.$wrapperEl.onAlt(
       swiper.touchEvents.move,
       `.${swiper.params.zoom.containerClass}`,
       onTouchMove,
@@ -579,24 +579,29 @@ export default function Zoom({ swiper, extendParams, on, emit }) {
 
     // Scale image
     if (support.gestures) {
-      swiper.$wrapperEl.off(swiper.touchEvents.start, enableGestures, passiveListener);
-      swiper.$wrapperEl.off(swiper.touchEvents.end, disableGestures, passiveListener);
+      swiper.$wrapperEl.offAlt(swiper.touchEvents.start, enableGestures, passiveListener);
+      swiper.$wrapperEl.offAlt(swiper.touchEvents.end, disableGestures, passiveListener);
     } else if (swiper.touchEvents.start === 'touchstart') {
-      swiper.$wrapperEl.off(
+      swiper.$wrapperEl.offAlt(
         swiper.touchEvents.start,
         slideSelector,
         onGestureStart,
         passiveListener,
       );
-      swiper.$wrapperEl.off(
+      swiper.$wrapperEl.offAlt(
         swiper.touchEvents.move,
         slideSelector,
         onGestureChange,
         activeListenerWithCapture,
       );
-      swiper.$wrapperEl.off(swiper.touchEvents.end, slideSelector, onGestureEnd, passiveListener);
+      swiper.$wrapperEl.offAlt(
+        swiper.touchEvents.end,
+        slideSelector,
+        onGestureEnd,
+        passiveListener,
+      );
       if (swiper.touchEvents.cancel) {
-        swiper.$wrapperEl.off(
+        swiper.$wrapperEl.offAlt(
           swiper.touchEvents.cancel,
           slideSelector,
           onGestureEnd,
@@ -606,7 +611,7 @@ export default function Zoom({ swiper, extendParams, on, emit }) {
     }
 
     // Move image
-    swiper.$wrapperEl.off(
+    swiper.$wrapperEl.offAlt(
       swiper.touchEvents.move,
       `.${swiper.params.zoom.containerClass}`,
       onTouchMove,

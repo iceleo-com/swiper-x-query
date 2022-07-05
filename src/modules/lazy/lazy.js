@@ -1,7 +1,8 @@
 import { getWindow } from 'ssr-window';
-import $ from '../../shared/dom.js';
 
 export default function Lazy({ swiper, extendParams, on, emit }) {
+  const $ = swiper.$;
+
   extendParams({
     lazy: {
       checkInView: false,
@@ -47,7 +48,7 @@ export default function Lazy({ swiper, extendParams, on, emit }) {
     }
     if ($images.length === 0) return;
 
-    $images.each((imageEl) => {
+    $images.eachAlt((imageEl) => {
       const $imageEl = $(imageEl);
       $imageEl.addClass(params.loadingClass);
 
@@ -79,7 +80,7 @@ export default function Lazy({ swiper, extendParams, on, emit }) {
             $imageEl.removeAttr('data-sizes');
           }
           if ($pictureEl.length) {
-            $pictureEl.children('source').each((sourceEl) => {
+            $pictureEl.children('source').eachAlt((sourceEl) => {
               const $source = $(sourceEl);
 
               if ($source.attr('data-srcset')) {
@@ -151,7 +152,7 @@ export default function Lazy({ swiper, extendParams, on, emit }) {
 
     if (!initialImageLoaded) initialImageLoaded = true;
     if (swiper.params.watchSlidesProgress) {
-      $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).each((slideEl) => {
+      $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).eachAlt((slideEl) => {
         const index = isVirtual ? $(slideEl).attr('data-swiper-slide-index') : $(slideEl).index();
         loadInSlide(index);
       });
@@ -228,10 +229,10 @@ export default function Lazy({ swiper, extendParams, on, emit }) {
 
     if (inView) {
       load();
-      $scrollElement.off('scroll', checkInViewOnLoad, passiveListener);
+      $scrollElement.offAlt('scroll', checkInViewOnLoad, passiveListener);
     } else if (!scrollHandlerAttached) {
       scrollHandlerAttached = true;
-      $scrollElement.on('scroll', checkInViewOnLoad, passiveListener);
+      $scrollElement.onAlt('scroll', checkInViewOnLoad, passiveListener);
     }
   }
 

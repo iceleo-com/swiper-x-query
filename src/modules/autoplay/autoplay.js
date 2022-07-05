@@ -149,13 +149,13 @@ export default function Autoplay({ swiper, extendParams, on, emit }) {
   }
   function attachMouseEvents() {
     if (swiper.params.autoplay.pauseOnMouseEnter) {
-      swiper.$el.on('mouseenter', onMouseEnter);
-      swiper.$el.on('mouseleave', onMouseLeave);
+      swiper.$el.onAlt('mouseenter', onMouseEnter);
+      swiper.$el.onAlt('mouseleave', onMouseLeave);
     }
   }
   function detachMouseEvents() {
-    swiper.$el.off('mouseenter', onMouseEnter);
-    swiper.$el.off('mouseleave', onMouseLeave);
+    swiper.$el.offAlt('mouseenter', onMouseEnter);
+    swiper.$el.offAlt('mouseleave', onMouseLeave);
   }
 
   on('init', () => {
