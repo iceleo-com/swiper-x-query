@@ -1,5 +1,5 @@
 {
-  "name": "swiper-x-query",
+  "name": "swiper-xquery",
   "version": "8.2.6",
   "description": "A custom of Swiper that allow using 3rd DOM manipulation like jQuery, Zepto,...etc",
   "scripts": {
@@ -52,17 +52,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iceleo-com/swiper-x-query.git"
+    "url": "https://github.com/iceleo-com/swiper-xquery.git"
   },
   "keywords": [
     "swiper",
     "swipe",
+    "slide",
     "slider",
+    "xquery",
     "jquery",
     "zepto",
     "slideshow"
   ],
-  "author": "Vladimir Kharlampidi",
+  "author": "Vladimir Kharlampidi (Adjusted by Brat Vu)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nolimits4web/swiper/issues"

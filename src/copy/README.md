@@ -1,11 +1,20 @@
-Swiper
-==========
+# Swiper xQuery
+Swiper xQuery is a custom of Swiper that allow using 3rd DOM manipulation library like jQuery, Zepto,...etc
 
-Swiper - is the free and most modern mobile touch slider with hardware accelerated transitions and amazing native behavior. It is intended to be used in mobile websites, mobile web apps, and mobile native/hybrid apps.
+# When you will use Swiper xQuery
+- You are NOT using Dom7 and using another DOM manipulation library like jQuery, Zepto,...
 
-Swiper is not compatible with all platforms, it is a modern touch slider which is focused only on modern apps/platforms to bring the best experience and simplicity.
+# When you will NOT use Swiper xQuery
+- You are using Dom7 for DOM manipulation
 
-# Getting Started
-  * [Getting Started Guide](https://swiperjs.com/get-started/)
-  * [API](https://swiperjs.com/swiper-api/)
-  * [Demos](https://swiperjs.com/demos/)
+# How to use
+```
+import $ from 'jquery';
+import Swiper from 'swiper';
+
+Swiper.$ = $; // attach DOM manipulation library to Swiper
+
+// everything below will be the same as before
+```
+
+For further information, please take a look at the [Official Documentation](https://swiperjs.com/swiper-api)
